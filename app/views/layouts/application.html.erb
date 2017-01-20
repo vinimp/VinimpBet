@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VinimpBet</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<%= render "layouts/header.html.erb" %>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<main class="container">
+	<%= yield %>
+</main>
+
+<%= render "layouts/footer.html.erb" %>
+
+</body>
+
+<script>
+	$(".button-collapse").sideNav();
+</script>
+</html>
