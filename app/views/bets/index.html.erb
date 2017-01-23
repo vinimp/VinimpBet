@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<!-- <h1>Listing Bets</h1> -->
+
+  <div class="row">
+    <% @bets.each do |bet| %>
+      <div class="col s4">
+        <div class="card">
+          <div class="center waves-effect waves-block waves-light">
+            <%= image_tag bet.logo_in, class:"tiny material-icons class-logo" %>
+            <%= image_tag bet.logo_out, class:"material-icons class-logo" %>
+            
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><%= bet.evento %><i class="material-icons right">more_vert</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"><%= bet.evento %><i class="material-icons right">close</i></span>
+            <p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Vittoria</th>
+                    <th>Pareggio</th>
+                    <th>Sconfitta</th>     
+                    <th colspan="3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                      <td><%= bet.vittoria %></td>
+                      <td><%= bet.pareggio %></td>
+                      <td><%= bet.sconfitta %></td>       
+                      
+                      <% if user_signed_in? %>
+                        <% if current_user.email == "vinimp@libero.it" then %>
+                          <td><%= link_to 'Show', bet %></td>
+                          <td><%= link_to 'Edit', edit_bet_path(bet) %></td>
+                          <td><%= link_to 'Destroy', bet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <% end %>
+                      <% end %>
+                    </tr>
+
+                </tbody>
+              </table>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+
+
+
+

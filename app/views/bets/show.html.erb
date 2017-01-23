@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Evento:</strong>
+  <%= @bet.evento %>
+</p>
+
+<p>
+  <strong>Vittoria:</strong>
+  <%= @bet.vittoria %>
+</p>
+
+<p>
+  <strong>Pareggio:</strong>
+  <%= @bet.pareggio %>
+</p>
+
+<p>
+  <strong>Sconfitta:</strong>
+  <%= @bet.sconfitta %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @bet.data %>
+</p>
+
+<% if current_user == "vinimp@libero.it" %>
+  <%= link_to 'Edit', edit_bet_path(@bet) %> |
+<% end %>
+<%= link_to 'Back', bets_path %>

@@ -1,10 +1,15 @@
 <header class="navbar-fixed">
 	<nav class="teal lighten-3">
 		<div class="container nav-wrapper">
+			<%= image_tag "logo.ico", class: "tiny material-icons class-logo" %>
 		  <%= link_to "Vinimp-Bet", root_path, class: "brand-logo" %>
 		  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		  <ul class="right hide-on-med-and-down">	
 		  	<% if user_signed_in? %>	
+
+		  		<li><%= image_tag current_user.avatar.url(:thumb), class: "tiny material-icons class-logo" %></li>
+
+		  		<li><%= current_user.name %></li>
 		  		<li><%= link_to "Esci", destroy_user_session_path, method: :delete %></li>
 		  	<% else %>
 					<li><%= link_to "Log in", new_user_session_path %></li>

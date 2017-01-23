@@ -17,6 +17,9 @@ gem 'materialize-sass'
 
 gem 'devise'
 
+gem "paperclip", "~> 5.0.0"
+
+
 gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development, :test do

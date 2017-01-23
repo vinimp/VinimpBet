@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  evento: MyString
+  vittoria: 9.99
+  pareggio: 9.99
+  sconfitta: 9.99
+  data: 2017-01-20
+
+two:
+  evento: MyString
+  vittoria: 9.99
+  pareggio: 9.99
+  sconfitta: 9.99
+  data: 2017-01-20
