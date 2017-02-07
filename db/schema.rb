@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122161446) do
+ActiveRecord::Schema.define(version: 20170207153101) do
+
+  create_table "bet_puntates", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "bet_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "evento_scommesso"
+    t.boolean  "chiusura",         default: false
+  end
 
   create_table "bets", force: :cascade do |t|
     t.string   "evento"
@@ -30,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170122161446) do
     t.string   "logo_out_content_type"
     t.integer  "logo_out_file_size"
     t.datetime "logo_out_updated_at"
+    t.integer  "n_giornata"
+    t.string   "risultato"
   end
 
   create_table "users", force: :cascade do |t|

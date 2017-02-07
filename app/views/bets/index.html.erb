@@ -1,19 +1,18 @@
-<p id="notice"><%= notice %></p>
-
 <!-- <h1>Listing Bets</h1> -->
-
+  <div class="center">
+    <h3><%= "Giornata " + @bets[1].n_giornata.to_s %></h3>
+  </div>
   <div class="row">
     <% @bets.each do |bet| %>
-      <div class="col s4">
-        <div class="card">
+      <div class="col s12 m6 l4">
+        <div class="card  cyan lighten-5">
           <div class="center waves-effect waves-block waves-light">
             <%= image_tag bet.logo_in, class:"tiny material-icons class-logo" %>
-            <%= image_tag bet.logo_out, class:"material-icons class-logo" %>
-            
+            <%= image_tag bet.logo_out, class:"material-icons class-logo" %>     
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4"><%= bet.evento %><i class="material-icons right">more_vert</i></span>
-            <p><a href="#">This is a link</a></p>
+            
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><%= bet.evento %><i class="material-icons right">close</i></span>
@@ -28,11 +27,11 @@
                   </tr>
                 </thead>
                 <tbody>
-
                     <tr>
-                      <td><%= bet.vittoria %></td>
-                      <td><%= bet.pareggio %></td>
-                      <td><%= bet.sconfitta %></td>       
+                      <td><%= link_to bet.vittoria, bet_puntates_path(c_u: current_user, :bet => bet.id, :evento_scommesso => "v"), :method => :post %></td>
+                      <td><%= link_to  bet.pareggio, bet_puntates_path(c_u: current_user, :bet => bet.id, :evento_scommesso => "p"), :method => :post %></td>
+                      <td><%= link_to  bet.sconfitta, bet_puntates_path(c_u: current_user, :bet => bet.id, :evento_scommesso => "s"), :method => :post %></td>
+      
                       
                       <% if user_signed_in? %>
                         <% if current_user.email == "vinimp@libero.it" then %>
@@ -54,7 +53,12 @@
   </div>
 
 
-
+<br>
+<% if user_signed_in? %>
+  <% if current_user.email == "vinimp@libero.it" then %>
+        <%= link_to 'New Bet', new_bet_path %>
+  <% end %>
+<% end %>
 
 
 

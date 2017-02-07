@@ -6,23 +6,61 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
+<body class="light-blue-text text-darken-4">
 
-<%= render "layouts/header.html.erb" %>
+<%= render "layouts/header" %>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="container">
+  <% flash.each do |type, message| %>
+    <script>
+      Materialize.toast('<%= message %>', 4000)
+    </script>
+  <% end %>
+</div>
+
+<%= render 'pages/slider' if action_name == 'home' %>
 
 <main class="container">
 	<%= yield %>
 </main>
 
-<%= render "layouts/footer.html.erb" %>
+<%= render "layouts/footer" %>
 
+
+<!--%= debug(params) if Rails.env.development? % -->
 </body>
 
 <script>
-	$(".button-collapse").sideNav();
+  $(".button-collapse").sideNav();
 </script>
+
+<script>
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+</script>
+
+<script>
+  $( document ).ready(function(){
+    $(".dropdown-button").dropdown();
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+      $('.tooltipped').tooltip({delay: 50});
+    });
+</script>
+
 </html>

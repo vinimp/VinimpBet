@@ -1,9 +1,12 @@
 @import "materialize";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
   body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: 'Pangolin', cursive;
   }
 
   main {
@@ -18,4 +21,12 @@
     margin-top: 7px;
     max-height: 50px;
     margin-right: 25px;
+  }
+
+  .fa-social{
+    padding:0 15px;
+  }
+
+  .quota{
+    text-color: red;
   }

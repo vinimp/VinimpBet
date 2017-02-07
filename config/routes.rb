@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :bet_puntates
   resources :bets
   devise_for :users
   root 'pages#home'

@@ -19,8 +19,11 @@ gem 'devise'
 
 gem "paperclip", "~> 5.0.0"
 
+gem 'protected_attributes'
 
 gem 'dotenv-rails', :groups => [:development, :test]
+
+gem 'font-awesome-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

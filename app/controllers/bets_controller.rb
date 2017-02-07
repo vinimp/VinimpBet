@@ -19,10 +19,9 @@ class BetsController < ApplicationController
 
   def create
     @bet = current_user.bets.build(bet_params)
-
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
+        format.html { redirect_to @bet, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
       else
         format.html { render :new }
       end
@@ -43,17 +42,17 @@ class BetsController < ApplicationController
     @bet.destroy
     respond_to do |format|
       format.html { redirect_to bets_url, notice: 'Bet was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
   private
     def set_bet
       @bet = Bet.find(params[:id])
+      @bet_puntate = BetPuntate.find_by(params[:id])
     end
 
     def bet_params
-      params.require(:bet).permit(:evento, :vittoria, :pareggio, :sconfitta, :data, :logo_in, :logo_out)
+      params.require(:bet).permit(:evento, :vittoria, :pareggio, :sconfitta, :data, :logo_in, :logo_out, :n_giornata)
     end
 
     def check_user

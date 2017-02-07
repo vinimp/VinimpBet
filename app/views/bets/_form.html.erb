@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :n_giornata %><br>
+    <%= f.date_field :n_giornata %>
+  </div>  
+
+  <div class="field">
     <%= f.label :evento %><br>
     <%= f.text_field :evento %>
     <%= f.file_field :logo_in %>
