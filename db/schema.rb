@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207153101) do
+ActiveRecord::Schema.define(version: 20170214114755) do
 
   create_table "bet_puntates", force: :cascade do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170207153101) do
     t.datetime "updated_at",                       null: false
     t.string   "evento_scommesso"
     t.boolean  "chiusura",         default: false
+    t.integer  "n_giornata"
   end
 
   create_table "bets", force: :cascade do |t|
@@ -28,8 +29,8 @@ ActiveRecord::Schema.define(version: 20170207153101) do
     t.decimal  "pareggio"
     t.decimal  "sconfitta"
     t.date     "data"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "user_id"
     t.string   "logo_in_file_name"
     t.string   "logo_in_content_type"
@@ -41,6 +42,15 @@ ActiveRecord::Schema.define(version: 20170207153101) do
     t.datetime "logo_out_updated_at"
     t.integer  "n_giornata"
     t.string   "risultato"
+    t.boolean  "chiudi_concorso",       default: false
+  end
+
+  create_table "classificas", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "n_giornata"
+    t.decimal  "punteggio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

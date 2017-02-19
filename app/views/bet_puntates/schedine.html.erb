@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col s11 m11">
+
+
+      <div class="row">
+        <div class="col s12 m12">
+          <h2 class="center">Le giocate dei partecipanti alla gara</h2>
+        </div>
+        <div class="col s12 m6"><h5 class="colore"><u>Settimana <%= @settimana[0].n_giornata %></u></h5>
+        </div>
+      </div>  
+
+      <div class="row">
+        <% @controllo = -1 %>
+        <% @metti_div = true %>
+        <% @contatore = 0 %>  
+        <% @contatore_colore = 0 %>
+        <% @schedine.each do |schedina| %>
+            <% @utente = User.find_by(id:schedina.user_id) %> 
+            <% if @controllo != schedina.user_id %> 
+              <% if @contatore % 2 == 1 %>
+                <div class="col s12 m6 l4"><div class="card horizontal "><div class="card-stacked"><div class="card-content white-text">1</div></div></div></div>
+              <% end %>
+              <br><% @controllo = schedina.user_id %>
+              <h5 class="colore center"><%= @utente.name %></h5>
+              <% @contatore_colore = @contatore_colore +1 %> 
+
+              <% if @contatore_colore % 2 == 0 %>
+                <% @colore = "green darken-1" %>         
+              <% else %>
+                <% @colore = "blue-grey darken-1" %>
+              <% end %>
+            <% end %>
+          <div class="col s12 m6 l6">
+            <div class="card horizontal ">
+              <div class="card-image <%= @colore %>">
+                <%= image_tag "logo.gif", class: "logo-v-center" %>
+              </div>
+              <div class="schedina card-stacked <%= @colore %>">
+                <div class="card-content white-text">
+
+                  <% @evento = Bet.find_by(id: schedina.bet_id) %>
+                  <div class="col s10 m10 l10"><b><%= @evento.evento %></div>
+                  <% if schedina.evento_scommesso =="v" %>
+                    <div class="col s2 m2 l2 colore_pronostico"><b><%= "1" %></b></div>
+                  <% end %>            
+                  <% if schedina.evento_scommesso =="p" %>
+                    <div class="col s2 m2 l2 colore_pronostico"><b><%= "x" %></b></div>  
+                  <% end %>
+                  <% if schedina.evento_scommesso =="s" %>
+                    <div class="col s2 m2 l2 colore_pronostico"><b><%= "2" %></b></div> 
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% @contatore = @contatore + 1 %>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :classificas
   resources :bet_puntates
   resources :bets
   devise_for :users
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'pages#about'
 
+  get 'schedine' => 'bet_puntates#schedine'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,29 @@
+<%= form_for(@classifica) do |f| %>
+  <% if @classifica.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@classifica.errors.count, "error") %> prohibited this classifica from being saved:</h2>
+
+      <ul>
+      <% @classifica.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :n_giornata %><br>
+    <%= f.number_field :n_giornata %>
+  </div>
+  <div class="field">
+    <%= f.label :punteggio %><br>
+    <%= f.text_field :punteggio %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

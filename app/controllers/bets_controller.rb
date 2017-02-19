@@ -4,7 +4,8 @@ class BetsController < ApplicationController
   before_action :check_user, only: [:edit, :update, :destroy]
 
   def index
-    @bets = Bet.all
+    @appoggio = Bet.order('n_giornata DESC').limit(10)
+    @bets = Bet.all.order('n_giornata DESC').paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -30,11 +31,23 @@ class BetsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @bet.update(bet_params)
-        format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
-      else
-        format.html { render :edit }
+      if bet_params[:chiudi_concorso] == "true"
+        @appoggio = Bet.find_by(id: bet_params[:id])
+        #@appoggio.each do |appo|
+          if @appoggio.update(bet_params)
+            format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
+          else
+            format.html { render :edit }
+          end          
+
+        #end
       end
+
+      #if @bet.update(bet_params)
+      #  format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
+      #else
+      #  format.html { render :edit }
+      #end
     end
   end
 
@@ -52,7 +65,7 @@ class BetsController < ApplicationController
     end
 
     def bet_params
-      params.require(:bet).permit(:evento, :vittoria, :pareggio, :sconfitta, :data, :logo_in, :logo_out, :n_giornata)
+      params.require(:bet).permit(:id, :evento, :vittoria, :pareggio, :sconfitta, :data, :logo_in, :logo_out, :n_giornata, :chiudi_concorso, :risultato)
     end
 
     def check_user

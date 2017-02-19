@@ -6,7 +6,7 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    font-family: 'Pangolin', cursive;
+    font-family: 'Raleway', sans-serif;    
   }
 
   main {
@@ -30,3 +30,24 @@
   .quota{
     text-color: red;
   }
+
+  .classifica-center{
+    padding-left: 10%;
+  }
+
+  .card-altezza{
+    height: 0px;
+  }
+
+.colore{
+  color: #e65100;
+}
+
+.colore_pronostico{
+  color: #c62828;
+}
+
+.logo-v-center{
+  padding-top: 20%;
+  padding-left: 10%;
+}

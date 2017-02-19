@@ -19,7 +19,7 @@
 
   <tbody>
     <% if @bet_puntates != nil %>
-      <% @bet_puntates.each do |bet| %>
+      <% @controlla_chiusura.each do |bet| %>
       <tr>
         <td><%= bet.bet.evento %></td>
         <% if bet.evento_scommesso == "v"%>
@@ -43,11 +43,13 @@
       <tr>
         <td colspan="3" class="center">  
           <% if !@chiusura %>
-            <%= form_for @bet_puntate, html: { multipart: true } do |f| %>
-              <%= f.hidden_field :user_id %>
-              <div class="actions">
-                <%= f.submit "Piazza la scommessa", class: "waves-effect waves-light btn btn-custom" %>
-              </div>
+            <% if !@bet_puntate.nil? %>
+              <%= form_for @bet_puntate, html: { multipart: true } do |f| %>
+                <%= f.hidden_field :user_id %>
+                <div class="actions">
+                  <%= f.submit "Piazza la scommessa", class: "waves-effect waves-light btn btn-custom" %>
+                </div>
+              <% end %>
             <% end %>
           <% end %>
         </td>

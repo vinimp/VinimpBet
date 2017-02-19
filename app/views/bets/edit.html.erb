@@ -1,6 +1,30 @@
 <h1>Editing Bet</h1>
+      <%= form_for @bet do |f| %>
 
-<%= render 'form' %>
+        <div class="field">
+          <%= f.label :id %><br>
+          <%= f.number_field :id %>
+        </div>
 
-<%= link_to 'Show', @bet %> |
-<%= link_to 'Back', bets_path %>
+        <div class="field">
+          <%= f.label :n_giornata %><br>
+          <%= f.number_field :n_giornata %>
+        </div>
+         <div class="field">
+          <%= f.label :chiudi_concorso %><br>
+          <%= f.text_field :chiudi_concorso %>
+        </div>
+
+         <div class="field">
+          <%= @bet.evento %><br>
+          <%= f.label :risultato %><br>
+          <%= f.text_field :risultato %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>	
+      <% end %>
+
+
+
