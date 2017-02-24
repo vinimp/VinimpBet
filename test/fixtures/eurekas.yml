@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  evento1: MyString
+  evento2: MyString
+  unouno: 9.99
+  unox: 9.99
+  x: 9.99
+  due: 9.99
+
+two:
+  evento1: MyString
+  evento2: MyString
+  unouno: 9.99
+  unox: 9.99
+  x: 9.99
+  due: 9.99

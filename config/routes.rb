@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :eurekas
   resources :classificas
   resources :bet_puntates
   resources :bets
@@ -9,6 +10,10 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about'
 
   get 'schedine' => 'bet_puntates#schedine'
+
+  get 'bilancio' => 'eurekas#bilancio'
+
+  get 'bilancio_edit' => 'eurekas#bilancio_edit'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -47,26 +47,43 @@ class BetPuntatesController < ApplicationController
 
 
   def create
-    @controllo_scommessa_piazzata = BetPuntate.where(user_id: params[:c_u])
-    @bet_puntate = BetPuntate.new
-    @bet_puntate.user_id = params[:c_u]
-    @bet_puntate.bet_id = params[:bet]
-    @bet_puntate.evento_scommesso = params[:evento_scommesso]
-    @ngiornata = Bet.order('n_giornata DESC') 
-    if !@ngiornata[0].chiudi_concorso && !@controllo_scommessa_piazzata[0].chiusura
-      @bet_puntate.n_giornata = @ngiornata[0].n_giornata
-      respond_to do |format|
-        if @bet_puntate.save
-          $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
-          format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
+    @controllo = BetPuntate.where(bet_id: params[:bet], user_id: params[:c_u])
+    if @controllo.count ==0
+      @controllo_scommessa_piazzata = BetPuntate.where(user_id: params[:c_u]).order('n_giornata DESC')
+      @bet_puntate = BetPuntate.new
+      @bet_puntate.user_id = params[:c_u]
+      @bet_puntate.bet_id = params[:bet]
+      @bet_puntate.evento_scommesso = params[:evento_scommesso]
+      @ngiornata = Bet.order('n_giornata DESC') 
+      if @ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata
+        if !@ngiornata[0].chiudi_concorso && !@controllo_scommessa_piazzata[0].chiusura
+          @bet_puntate.n_giornata = @ngiornata[0].n_giornata
+          respond_to do |format|
+            if @bet_puntate.save
+              $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
+              format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
+            else
+              format.html { render :new }
+            end
+          end
         else
-          format.html { render :new }
+          respond_to do |format|
+            format.html { redirect_to bets_path, notice: 'Già hai piazzato la tua scommessa' }
+          end
         end
-      end
+      else
+        @bet_puntate.n_giornata = @ngiornata[0].n_giornata
+        respond_to do |format|
+          if @bet_puntate.save
+            $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
+            format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
+          else
+            format.html { render :new }
+          end 
+        end 
+      end 
     else
-      respond_to do |format|
-        format.html { redirect_to bets_path, notice: 'Già hai piazzato la tua scommessa' }
-      end
+       redirect_to bets_path, notice: 'L ''evento è già presente nella tua schedina.' 
     end
   end
 
