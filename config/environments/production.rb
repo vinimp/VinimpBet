@@ -103,3 +103,4 @@ config.paperclip_defaults = {
     :s3_region => ENV['AWS_REGION']
   }
 end
+
