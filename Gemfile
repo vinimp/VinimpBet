@@ -25,7 +25,11 @@ gem 'font-awesome-sass'
 
 gem 'will_paginate', '~> 3.1.0'
 
-gem 'aws-sdk', '<2.0'
+gem 'will_paginate-materialize'
+
+gem 'aws-sdk', '~> 2.3'
+
+gem 'font-awesome-sass'
 
 group :development, :test do
 	gem 'sqlite3'
