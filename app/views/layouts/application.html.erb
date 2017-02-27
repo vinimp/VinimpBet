@@ -15,48 +15,31 @@
 <body class="light-blue-text text-darken-4">
 
 <%= render "layouts/header" %>
-
-<!--div class="container"-->
   <% flash.each do |type, message| %>
     <script>
       Materialize.toast('<%= message %>', 4000)
     </script>
   <% end %>
-<!--/div-->
-
 <%= render 'pages/slider' if action_name == 'home' %>
-
 <main class="container">
 	<%= yield %>
 </main>
-
 <%= render "layouts/footer" %>
-
 <%= debug(params) if Rails.env.development? %>
 </body>
-
 <script>
   $(".button-collapse").sideNav();
 </script>
-
 <script>
   $(document).ready(function(){
     $('ul.tabs').tabs();
   });
 </script>
-
 <script>
   $(document).ready(function(){
     $('.parallax').parallax();
   });
 </script>
-
-<script>
-  $( document ).ready(function(){
-    $(".dropdown-button").dropdown();
-  });
-</script>
-
 <script>
   $(document).ready(function(){
       $('.tooltipped').tooltip({delay: 50});
