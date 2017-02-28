@@ -13,9 +13,6 @@ class EurekasController < ApplicationController
     #@eurekas = Eureka.all
     @eurekas = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 1)
 
-
-debugger
-
     if !@eurekas.nil?
       @spesa_corrente = (@eurekas[0].puntata11).to_f + (@eurekas[0].puntata1x).to_f + (@eurekas[0].puntatax).to_f + (@eurekas[0].puntata2).to_f
     end
