@@ -1,6 +1,8 @@
 <!-- <h1>Listing Bets</h1> -->
   <div class="center"> 
-    <h3><%= #"Giornata " + @bets[0].n_giornata.to_s  if @bets != nil %></h3>
+    <%  if @bets != nil %>
+      <h3><%= "Giornata " + @bets[0].n_giornata.to_s %></h3>
+    <% end %>
   </div>
   <div class="row">
     <% @bets.each do |bet| %>
