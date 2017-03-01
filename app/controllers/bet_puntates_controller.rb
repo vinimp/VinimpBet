@@ -48,7 +48,7 @@ class BetPuntatesController < ApplicationController
 
   def create
     @controllo = BetPuntate.where(bet_id: params[:bet], user_id: params[:c_u])
-    if @controllo.count ==0
+    if @controllo.count == 0
       @controllo_scommessa_piazzata = BetPuntate.where(user_id: params[:c_u]).order('n_giornata DESC')
       @bet_puntate = BetPuntate.new
       @bet_puntate.user_id = params[:c_u]
@@ -122,6 +122,6 @@ class BetPuntatesController < ApplicationController
 
 
     def bet_puntate_params
-      params.require(:bet_puntate).permit(:user, :bet, :evento_scommesso, :user_id, :chiusura, :id)
+      params.require(:bet_puntate).permit(:user, :bet, :evento_scommesso, :user_id, :chiusura, :id, :n_gionata)
     end
 end
