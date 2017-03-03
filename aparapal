@@ -3,7 +3,9 @@
     <%= f.number_field :spesa, :value => f.text_field(:puntata11).to_f * 10 %>
   </div>
 
-
+												<div class="col s3 m3 l2 bilancio <%= @colore %>">
+													<%= #bilancio.vincita %>
+												</div>	
 
 												<div class="col s3 m3 l2 bilancio <%= @colore %>">
 													<%= #bilancio.data.strftime("%d/%m/%Y") %>
