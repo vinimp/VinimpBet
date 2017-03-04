@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.1.8'
+ruby '2.3.3'
 
 gem 'rails', '4.2.5.1'
 
@@ -20,8 +20,6 @@ gem "paperclip", "~> 5.0.0"
 gem 'protected_attributes'
 
 gem 'dotenv-rails', :groups => [:development, :test]
-
-gem 'font-awesome-sass'
 
 gem 'will_paginate', '~> 3.1.0'
 
