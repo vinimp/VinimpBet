@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-<h2>Classifica scommettitori Giornata <%= @ngiornata[0].n_giornata %></h2>
+<% if !@ngiornata[0].nil? %>
+  <h2>Classifica scommettitori Giornata <%= @ngiornata[0].n_giornata %></h2>
+<% end %>
 <div class="row">
 
 <div class="col s10 offset-s1 m6 offset-m3 ">

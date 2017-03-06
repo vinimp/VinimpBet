@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226145734) do
+ActiveRecord::Schema.define(version: 201703062413017) do
 
   create_table "bet_puntates", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,8 +53,26 @@ ActiveRecord::Schema.define(version: 20170226145734) do
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "eurekas" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "eurekas", force: :cascade do |t|
+    t.string   "evento1"
+    t.string   "evento2"
+    t.decimal  "unouno"
+    t.decimal  "unox"
+    t.decimal  "x"
+    t.decimal  "due"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.decimal  "puntata11"
+    t.decimal  "puntata1x"
+    t.decimal  "puntatax"
+    t.decimal  "puntata2"
+    t.decimal  "spesa"
+    t.decimal  "vincita_lorda"
+    t.decimal  "spesa_totale"
+    t.decimal  "vincita_totale"
+    t.date     "data"
+    t.decimal  "vincita"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

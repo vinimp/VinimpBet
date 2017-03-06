@@ -6,7 +6,9 @@
         <div class="col s12 m12">
           <h4 class="center">Le giocate dei partecipanti alla gara</h4>
         </div>
-        <div class="col s12 m6"><h5 class="colore"><u>Settimana <%= @settimana[0].n_giornata %></u></h5>
+        <% if !@settimana[0].nil? %>
+          <div class="col s12 m6"><h5 class="colore"><u>Settimana <%= @settimana[0].n_giornata %></u></h5>
+        <% end %>
         </div>
       </div>  
 

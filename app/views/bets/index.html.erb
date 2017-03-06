@@ -1,6 +1,6 @@
 <!-- <h1>Listing Bets</h1> -->
   <div class="center"> 
-    <%  if @bets != nil %>
+    <%  if !@bets[0].nil? %>
       <h3><%= "Giornata " + @bets[0].n_giornata.to_s %></h3>
     <% end %>
   </div>
@@ -22,9 +22,9 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Vittoria</th>
-                    <th>Pareggio</th>
-                    <th>Sconfitta</th>     
+                    <th>1</th>
+                    <th>x</th>
+                    <th>2</th>     
                     <th colspan="3"></th>
                   </tr>
                 </thead>
