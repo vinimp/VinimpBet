@@ -52,6 +52,9 @@ class BetsController < ApplicationController
   end
 
   def destroy
+
+debugger
+
     @bet.destroy
     respond_to do |format|
       format.html { redirect_to bets_url, notice: 'Bet was successfully destroyed.' }
@@ -60,7 +63,7 @@ class BetsController < ApplicationController
 
   private
     def set_bet
-      @bet = Bet.find(params[:id])
+      @bet = Bet.find_by(params[:id])
       @bet_puntate = BetPuntate.find_by(params[:id])
     end
 
