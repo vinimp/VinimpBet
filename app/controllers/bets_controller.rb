@@ -53,7 +53,7 @@ class BetsController < ApplicationController
 
   def destroy
 
-debugger
+
 
     @bet.destroy
     respond_to do |format|
