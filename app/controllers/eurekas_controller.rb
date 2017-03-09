@@ -27,6 +27,7 @@ class EurekasController < ApplicationController
   end
 
   def edit
+    @eureka = Eureka.find_by(id: params[:id])
   end
 
   def create
