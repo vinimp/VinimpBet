@@ -20,3 +20,8 @@
     <%= f.label :data %><br>
     <%= f.date_select :data %>
   </div>
+
+
+
+<script type="text/javascript" src="https://counter10.fcs.ovh/private/counter.js?c=16d5421ee9edf334d5b0b60493f106e5"></script>
+<noscript><a href="https://www.contatoreaccessi.com" title="contatori blog gratis"><img src="https://counter10.fcs.ovh/private/contatoreaccessi.php?c=16d5421ee9edf334d5b0b60493f106e5" border="0" title="contatori blog gratis" alt="contatori blog gratis"></a></noscript>

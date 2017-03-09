@@ -1,8 +1,12 @@
 class EurekasController < ApplicationController
-  before_action :set_eureka, only: [:show, :edit, :update, :destroy]
+  before_action :set_eureka, only: [:show, :update, :destroy]
 
   def bilancio_edit
-    @bilancio = Eureka.first
+    #@bilancio = Eureka.first
+
+debugger
+
+    @bilancio = Eureka.find_by(id: params[:format])
   end
 
   def bilancio

@@ -47,7 +47,7 @@
 												<div class="col s1 m1 l2 bilancio">
 													<% if user_signed_in? %>
 													  <% if current_user.email == "vinimp@libero.it" then %>
-													        <%= link_to 'Edit', bilancio_edit_path  %>
+													        <%= link_to 'Edit', bilancio_edit_path(bilancio)  %>
 													  <% end %>
 													<% end %>    
 												</div>	

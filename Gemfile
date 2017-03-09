@@ -31,6 +31,7 @@ gem 'font-awesome-sass'
 
 gem 'bcrypt', platforms: :ruby
 
+
 group :development, :test do
 	gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
