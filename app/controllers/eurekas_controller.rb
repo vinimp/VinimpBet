@@ -3,9 +3,6 @@ class EurekasController < ApplicationController
 
   def bilancio_edit
     #@bilancio = Eureka.first
-
-debugger
-
     @bilancio = Eureka.find_by(id: params[:format])
   end
 
