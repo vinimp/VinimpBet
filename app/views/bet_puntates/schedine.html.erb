@@ -21,13 +21,8 @@
             <% @utente = User.find_by(id:schedina.user_id) %> 
             <% if schedina.chiusura %>
               <% if @controllo != schedina.user_id %> 
-                <% if @contatore % 2 == 1 %>
-                    </div>
-                    <div class="row">
-                <% else %>
-                    </div>
-                    <div class="row">                
-                <% end %>
+                </div>
+                <div class="row">
                 <br><% @controllo = schedina.user_id %>
                 <h5 class="colore center"><%= @utente.name %></h5>
                 <% @contatore_colore = @contatore_colore +1 %> 
