@@ -1,53 +1,58 @@
 <h4 class="center">Bilancio</h4>
 
       <div class="row">
-
-				<div class="col s3 m3 l2 center">
-					<b>Spesa</b>
-				</div>
-				<div class="col s3 m3 l2 center">
-					<b>Vincita</b>
-				</div>	
-				<div class="col s3 m3 l2 center">
-					<b>Data</b>
-				</div>
+        <div class="col s3 m3 l2 offset-l2 center">
+          <b>Evento</b>
+        </div>
+        <div class="col s3 m3 l2 center">
+          <b>Spesa</b>
+        </div>
+        <div class="col s3 m3 l2 center">
+          <b>Vincita</b>
+        </div>  
+        <div class="col s3 m3 l2 center">
+          <b>Data</b>
+        </div>
       </div>
 
       <div class="row">
         <div class="col s12 m12 l12">
           <div class="card blue-grey darken-1">
             <div class="card-content">
-            	<% @contatore = 0 %>
-							<% @bilancio.each do |bilancio| %>
-								<% @contatore = @contatore +1 %>
-								<% if @contatore % 2 == 0 %>
-									<% @colore = "testo-verde" %>
-								<% else %>
-									<% @colore = "testo-rosso" %>
-								<% end %>
-								<div class="row">								
-												<div class="col s3 m3 l2 bilancio <%= @colore %>">
-													<%= number_to_currency(bilancio.puntata11 + bilancio.puntata1x + bilancio.puntatax + bilancio.puntata2) %>
-												</div>
-												<div class="col s3 m3 l2 bilancio <%= @colore %>">
-													<%= number_to_currency(bilancio.vincita) %>
-												</div>	
+              <% @contatore = 0 %>
+              <% @bilancio.each do |bilancio| %>
+                <% @contatore = @contatore +1 %>
+                <% if @contatore % 2 == 0 %>
+                  <% @colore = "testo-verde" %>
+                <% else %>
+                  <% @colore = "testo-rosso" %>
+                <% end %>
+                <div class="row">               
+                        <div class="col s3 m3 l2 offset-l2 <%= @colore %>">
+                          <%= bilancio.evento1 %> <br>  <%= bilancio.evento2 %>
+                        </div>
+                        <div class="col s3 m3 l2 bilancio <%= @colore %>">
+                          <%= number_to_currency(bilancio.puntata11 + bilancio.puntata1x + bilancio.puntatax + bilancio.puntata2) %>
+                        </div>
+                        <div class="col s3 m3 l2 bilancio <%= @colore %>">
+                          <%= number_to_currency(bilancio.vincita) %>
+                        </div>  
 
 
-												<div class="col s3 m3 l2 bilancio <%= @colore %>">
-													<%= bilancio.data.strftime("%d/%m/%Y") %>
-												</div>	
+                        <div class="col s3 m3 l2 bilancio <%= @colore %>">
+                          <%= bilancio.data.strftime("%d/%m/%Y") %>
+                        </div>  
 
 
-												<div class="col s1 m1 l2 bilancio">
-													<% if user_signed_in? %>
-													  <% if current_user.email == "vinimp@libero.it" then %>
-													        <%= link_to 'Edit', bilancio_edit_path(bilancio)  %>
-													  <% end %>
-													<% end %>    
-												</div>	
-				    		</div>																	
-							<% end %>
+                        <div class="col s1 m1 l2 bilancio">
+                          <% if user_signed_in? %>
+                            <% if current_user.email == "vinimp@libero.it" then %>
+                                  <%= link_to 'Edit', bilancio_edit_path(bilancio)  %>
+                            <% end %>
+                          <% end %>    
+                        </div>  
+                </div>                                  
+              <% end %>
             </div>
           </div>
         </div>
