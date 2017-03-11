@@ -59,21 +59,21 @@ class ClassificasController < ApplicationController
   def aggiorna_classifica
     @azzeccato = false
     @giocatori =  User.all  
-    @continua_ciclo = true
+
     @giocatori.each do |g|
-    @n_giornata = BetPuntate.maximum("n_giornata")
+      @continua_ciclo = true
+      @n_giornata = BetPuntate.maximum("n_giornata")
       @puntata = BetPuntate.where(:user_id => g.id, n_giornata: @n_giornata)
       @utente_id = g.id
       @quota_scommessa = 1
       @puntata.each do |p|
         @evento = Bet.find(p.bet_id)
-
-
-
         if p.chiusura 
+
+
           if (p.evento_scommesso == @evento.risultato) and (@continua_ciclo)
             @azzeccato = true
-            if p.evento_scommesso == "v"             
+            if p.evento_scommesso == "v"       
               @quota_scommessa = (@quota_scommessa * @evento.vittoria)         
             end
             if p.evento_scommesso == "p"
@@ -94,7 +94,7 @@ class ClassificasController < ApplicationController
             @azzeccato = true
           end
         end
-      end        
+      end     
         Classifica.create(user_id: @utente_id, n_giornata: @evento.n_giornata, punteggio: @quota_scommessa)        
     end
   end
