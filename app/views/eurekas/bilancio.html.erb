@@ -29,7 +29,7 @@
                 <% end %>
                 <div class="row">               
                         <div class="col s3 m3 l2 offset-l2 <%= @colore %>">
-                          <%= bilancio.evento1 %> <br>  <%= bilancio.evento2 %>
+                          <%= link_to "Incontri", eureka_path(bilancio.id) %> 
                         </div>
                         <div class="col s3 m3 l2 bilancio <%= @colore %>">
                           <%= number_to_currency(bilancio.puntata11 + bilancio.puntata1x + bilancio.puntatax + bilancio.puntata2) %>
