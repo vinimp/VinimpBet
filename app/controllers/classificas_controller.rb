@@ -77,21 +77,21 @@ class ClassificasController < ApplicationController
           if (p.evento_scommesso == @evento.risultato) and (@continua_ciclo)
             @azzeccato = true
             if p.evento_scommesso == "v"      
-              if !@azzeccato.nil 
+              if !@azzeccato.nil? 
                 @quota_scommessa = (@quota_scommessa * @evento.vittoria) + @classifica.punteggio
               else
                 @quota_scommessa = (@quota_scommessa * @evento.vittoria)
               end    
             end
             if p.evento_scommesso == "p"
-              if !@azzeccato.nil 
+              if !@azzeccato.nil? 
                 @quota_scommessa = (@quota_scommessa * @evento.pareggio) + @classifica.punteggio
               else
                 @quota_scommessa = (@quota_scommessa * @evento.pareggio)
               end                 
             end      
             if p.evento_scommesso == "s"
-              if !@azzeccato.nil 
+              if !@azzeccato.nil? 
                 @quota_scommessa = (@quota_scommessa * @evento.sconfitta) + @classifica.punteggio
               else
                 @quota_scommessa = (@quota_scommessa * @evento.sconfitta)
