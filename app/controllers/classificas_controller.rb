@@ -5,7 +5,7 @@ class ClassificasController < ApplicationController
   def index
     @ngiornata = Classifica.order('created_at DESC')
     if @ngiornata.count != 0 
-      @classificas = Classifica.where(n_giornata: @ngiornata[0].n_giornata).order('punteggio DESC').group('user_id')
+      @classificas = Classifica.where(n_giornata: @ngiornata[0].n_giornata).order('punteggio DESC')
     else
       @classificas = Classifica.all
     end

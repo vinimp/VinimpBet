@@ -38,6 +38,13 @@
       <div class="waves-effect waves-light btn btn-custom">
         <%= f.submit "Registrati" %>
       </div>
+
+
+      <div class="field">
+        <%= f.check_box :autorizzo %>
+        <%= f.label :autorizzo %>
+      </div>      
+
     <% end %>
 
     <%= render "devise/shared/links" %>

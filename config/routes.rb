@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'bilancio' => 'eurekas#bilancio'
 
   get 'bilancio_edit' => 'eurekas#bilancio_edit'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
