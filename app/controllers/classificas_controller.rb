@@ -4,6 +4,7 @@ class ClassificasController < ApplicationController
 
   def index
     @ngiornata = Classifica.order('created_at DESC')
+
     if @ngiornata.count != 0 
       @classificas = Classifica.where(n_giornata: @ngiornata[0].n_giornata).order('punteggio DESC')
     else
@@ -69,18 +70,32 @@ class ClassificasController < ApplicationController
       @puntata.each do |p|
         @evento = Bet.find(p.bet_id)
         if p.chiusura 
+          @classifica = Classifica.find_by(user_id: g.id)
+
 
 
           if (p.evento_scommesso == @evento.risultato) and (@continua_ciclo)
             @azzeccato = true
-            if p.evento_scommesso == "v"       
-              @quota_scommessa = (@quota_scommessa * @evento.vittoria)         
+            if p.evento_scommesso == "v"      
+              if !@azzeccato.nil 
+                @quota_scommessa = (@quota_scommessa * @evento.vittoria) + @classifica.punteggio
+              else
+                @quota_scommessa = (@quota_scommessa * @evento.vittoria)
+              end    
             end
             if p.evento_scommesso == "p"
-              @quota_scommessa = @quota_scommessa * @evento.pareggio
+              if !@azzeccato.nil 
+                @quota_scommessa = (@quota_scommessa * @evento.pareggio) + @classifica.punteggio
+              else
+                @quota_scommessa = (@quota_scommessa * @evento.pareggio)
+              end                 
             end      
             if p.evento_scommesso == "s"
-              @quota_scommessa = @quota_scommessa * @evento.sconfitta
+              if !@azzeccato.nil 
+                @quota_scommessa = (@quota_scommessa * @evento.sconfitta) + @classifica.punteggio
+              else
+                @quota_scommessa = (@quota_scommessa * @evento.sconfitta)
+              end                 
             end              
           else
             @continua_ciclo = false
