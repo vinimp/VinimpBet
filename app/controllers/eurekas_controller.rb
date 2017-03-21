@@ -14,6 +14,7 @@ class EurekasController < ApplicationController
         @vincita_spesa = @vincita_spesa + bil.vincita - bil.puntata11 - bil.puntata1x - bil.puntatax - bil.puntata2
       else
         @vincita_spesa = @vincita_spesa - bil.puntata11 - bil.puntata1x - bil.puntatax - bil.puntata2
+      end
     end   
   end
 
