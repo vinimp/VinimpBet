@@ -108,9 +108,6 @@ class ClassificasController < ApplicationController
               end              
             else
               @continua_ciclo = false
-
-debugger
-
               if !@classifica.punteggio.nil?
                 @quota_scommessa = @classifica.punteggio
               else  
