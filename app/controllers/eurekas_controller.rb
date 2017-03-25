@@ -1,6 +1,6 @@
 class EurekasController < ApplicationController
   before_action :set_eureka, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :bilancio_edit]
 
   def bilancio_edit
     #@bilancio = Eureka.first
