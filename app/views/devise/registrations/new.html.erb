@@ -39,11 +39,22 @@
         <%= f.submit "Registrati" %>
       </div>
 
-
-      <div class="field">
+  <div class="row">
+      <div class="field col s5 m5 l5">
         <%= f.check_box :autorizzo %>
         <%= f.label :autorizzo %>
       </div>      
+  </div>
+  <div class="row">
+        <div class="col s12 m12 l12 autorizzo_giustifica">
+          Trattamento dei dati personali
+          i tuoi dati non saranno comunicati a terzi e conservati al solo scopo di fornirti i servizi presente sul sito www.vinimp.top
+        </div>
+      </div>
+    </form>
+  </div>
+
+
 
     <% end %>
 
