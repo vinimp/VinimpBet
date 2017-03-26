@@ -8,8 +8,7 @@ class EurekasController < ApplicationController
   end
 
   def bilancio
-    #@bilancio = Eureka.all.order('id DESC')
-    @bilancio = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 10)
+    @bilancio = Eureka.all.order('id DESC')    
     @vincita_spesa = 0
     @bilancio.each do |bil|
       if !bil.vincita.nil?
@@ -18,6 +17,7 @@ class EurekasController < ApplicationController
         @vincita_spesa = @vincita_spesa - bil.puntata11 - bil.puntata1x - bil.puntatax - bil.puntata2
       end
     end   
+    @bilancio = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 10)
   end
 
   def index
