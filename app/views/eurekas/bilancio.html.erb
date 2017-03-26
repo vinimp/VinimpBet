@@ -62,3 +62,7 @@
     <h5 class="chip red accent-1"><b><%= number_to_currency(@vincita_spesa) %></b></h5>
   </div>
 </div>
+
+<div class="pagination center">
+    <%= will_paginate @bilancio  %>
+</div>
