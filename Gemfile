@@ -41,6 +41,7 @@ end
 group :production do
 	gem 'pg'
 	gem 'rails_12factor'
+	gem 'tlsmail'
 end
 
 group :development do
