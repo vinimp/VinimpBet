@@ -67,6 +67,7 @@ class ClassificasController < ApplicationController
       @puntata = BetPuntate.where(:user_id => g.id, n_giornata: @n_giornata)
       @utente_id = g.id
       @quota_scommessa = 1
+<<<<<<< HEAD
 
       
       if !puntata.nil?
@@ -136,6 +137,69 @@ class ClassificasController < ApplicationController
 
       end
 
+=======
+      @puntata.each do |p|
+        @evento = Bet.find(p.bet_id)
+        if p.chiusura && !@evento.nil?
+          if (@classifica = Classifica.where(user_id: g.id).last)
+            if (p.evento_scommesso == @evento.risultato) and (@continua_ciclo)
+              @azzeccato = true
+              if p.evento_scommesso == "v"  
+                if !@azzeccato.nil? 
+                  if !@classifica.punteggio.nil?
+                    @quota_scommessa = (@quota_scommessa * @evento.vittoria) + @classifica.punteggio
+                  else
+                    @quota_scommessa = (@quota_scommessa * @evento.vittoria)
+                  end                  
+                else
+                  @quota_scommessa = (@quota_scommessa * @evento.vittoria)
+                end    
+              end
+              if p.evento_scommesso == "p"
+                if !@azzeccato.nil? 
+                  if !@classifica.punteggio.nil?
+                    @quota_scommessa = (@quota_scommessa * @evento.pareggio) + @classifica.punteggio
+                  else
+                    @quota_scommessa = (@quota_scommessa * @evento.pareggio)
+                  end
+                else
+                  @quota_scommessa = (@quota_scommessa * @evento.pareggio)
+                end                 
+              end      
+              if p.evento_scommesso == "s"
+                if !@azzeccato.nil? 
+                  if !@classifica.punteggio.nil?
+                    @quota_scommessa = (@quota_scommessa * @evento.sconfitta) + @classifica.punteggio
+                  else
+                    @quota_scommessa = (@quota_scommessa * @evento.sconfitta)
+                  end
+                else
+                  @quota_scommessa = (@quota_scommessa * @evento.sconfitta)
+                end                 
+              end              
+            else
+              @continua_ciclo = false
+              if !@classifica.punteggio.nil?
+                @quota_scommessa = @classifica.punteggio
+              else  
+                @quota_scommessa = 0
+              end
+              @azzeccato = false
+            end 
+          end   
+        else
+          @quota_scommessa = 0  
+          if (@classifica = Classifica.find_by(user_id: g.id))
+            if !@classifica.punteggio.nil?
+              @quota_scommessa = @quota_scommessa + @classifica.punteggio
+            else
+              @quota_scommessa = @quota_scommessa
+            end
+            @azzeccato = true
+          end
+        end
+      end     
+>>>>>>> 1e354af79d598ec5d5619a028ff0a54644e1967f
         Classifica.create(user_id: @utente_id, n_giornata: @evento.n_giornata, punteggio: @quota_scommessa)        
     end
   end
