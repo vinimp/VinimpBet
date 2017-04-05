@@ -3,10 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :inizializza
-
   after_filter :store_location
+
+before_action :configure_permitted_parameters, if: :devise_controller?
+
 
   protected
 
@@ -38,4 +39,9 @@ end
       @bet_puntate = ApplicationController::BetPuntate.find_by user_id: current_user
     end
   end    
+end
+
+
+def configure_permitted_parameters
+  devise_parameter_sanitizer.permit(:sign_up, keys: [:autorizzo])
 end

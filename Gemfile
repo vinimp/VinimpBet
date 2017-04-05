@@ -21,8 +21,6 @@ gem 'protected_attributes'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'font-awesome-sass'
-
 gem 'will_paginate', '~> 3.1.0'
 
 gem 'will_paginate-materialize'
@@ -30,6 +28,9 @@ gem 'will_paginate-materialize'
 gem 'aws-sdk', '~> 2.3'
 
 gem 'font-awesome-sass'
+
+gem 'bcrypt', platforms: :ruby
+
 
 group :development, :test do
 	gem 'sqlite3'
@@ -40,6 +41,7 @@ end
 group :production do
 	gem 'pg'
 	gem 'rails_12factor'
+	gem 'tlsmail'
 end
 
 group :development do

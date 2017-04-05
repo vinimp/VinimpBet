@@ -60,8 +60,8 @@ class BetsController < ApplicationController
 
   private
     def set_bet
-      @bet = Bet.find(params[:id])
-      @bet_puntate = BetPuntate.find_by(params[:id])
+      @bet = Bet.find_by(id: params[:id])
+      @bet_puntate = BetPuntate.find_by(id: params[:id])
     end
 
     def bet_params

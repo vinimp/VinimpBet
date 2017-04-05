@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  #devise_for :users
+
+    Rails.application.routes.draw do
+      devise_for :users, controllers: {
+        #sessions: 'users/sessions'
+        registrations: 'users/registrations'
+      }
+    end
+
   resources :eurekas
   resources :classificas
   resources :bet_puntates
@@ -14,6 +22,7 @@ Rails.application.routes.draw do
   get 'bilancio' => 'eurekas#bilancio'
 
   get 'bilancio_edit' => 'eurekas#bilancio_edit'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

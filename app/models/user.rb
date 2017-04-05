@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+         
  has_many :bets
-  has_many :bet_puntates
+ has_many :bet_puntates
 
   has_attached_file :avatar, styles: { medium: "300x>", thumb: "50x>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/         

@@ -6,8 +6,11 @@ class BetPuntatesController < ApplicationController
     @classifica = Classifica.order('punteggio DESC')
     @settimana = BetPuntate.order('n_giornata DESC', 'user_id ASC')
     @utente = User.all
-    @schedine = BetPuntate.where(n_giornata: @settimana[0].n_giornata, user_id: User.distinct).order('user_id ASC')
-
+    if !@settimana[0].nil?
+      @schedine = BetPuntate.where(n_giornata: @settimana[0].n_giornata, user_id: User.distinct).order('user_id ASC')
+    else
+      @schedine = BetPuntate.where(user_id: User.distinct).order('user_id ASC')
+    end
     #@schedine = User.where(id: BetPuntate.where(n_giornata: @settimana[0].n_giornata))
 
 
@@ -55,8 +58,24 @@ class BetPuntatesController < ApplicationController
       @bet_puntate.bet_id = params[:bet]
       @bet_puntate.evento_scommesso = params[:evento_scommesso]
       @ngiornata = Bet.order('n_giornata DESC') 
-      if @ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata
-        if !@ngiornata[0].chiudi_concorso && !@controllo_scommessa_piazzata[0].chiusura
+      if !@controllo_scommessa_piazzata[0].nil?
+        if @ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata
+          if !@ngiornata[0].chiudi_concorso && !@controllo_scommessa_piazzata[0].chiusura
+            @bet_puntate.n_giornata = @ngiornata[0].n_giornata
+            respond_to do |format|
+              if @bet_puntate.save
+                $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
+                format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
+              else
+                format.html { render :new }
+              end
+            end
+          else
+            respond_to do |format|
+              format.html { redirect_to bets_path, notice: 'Già hai piazzato la tua scommessa' }
+            end
+          end
+        else
           @bet_puntate.n_giornata = @ngiornata[0].n_giornata
           respond_to do |format|
             if @bet_puntate.save
@@ -64,13 +83,9 @@ class BetPuntatesController < ApplicationController
               format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
             else
               format.html { render :new }
-            end
-          end
-        else
-          respond_to do |format|
-            format.html { redirect_to bets_path, notice: 'Già hai piazzato la tua scommessa' }
-          end
-        end
+            end 
+          end 
+        end 
       else
         @bet_puntate.n_giornata = @ngiornata[0].n_giornata
         respond_to do |format|
@@ -79,9 +94,11 @@ class BetPuntatesController < ApplicationController
             format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
           else
             format.html { render :new }
-          end 
-        end 
-      end 
+          end
+        end
+      end
+    
+
     else
        redirect_to bets_path, notice: 'L ''evento è già presente nella tua schedina.' 
     end

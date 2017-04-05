@@ -1,19 +1,30 @@
 class EurekasController < ApplicationController
-  before_action :set_eureka, only: [:show, :edit, :update, :destroy]
+  before_action :set_eureka, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :bilancio_edit, :show]
 
   def bilancio_edit
-    @bilancio = Eureka.first
+    #@bilancio = Eureka.first
+    @bilancio = Eureka.find_by(id: params[:format])
   end
 
   def bilancio
-    @bilancio = Eureka.all.order('id DESC')
+    @bilancio = Eureka.all.order('id DESC')    
+    @vincita_spesa = 0
+    @bilancio.each do |bil|
+      if !bil.vincita.nil?
+        @vincita_spesa = @vincita_spesa + bil.vincita - bil.puntata11 - bil.puntata1x - bil.puntatax - bil.puntata2
+      else
+        @vincita_spesa = @vincita_spesa - bil.puntata11 - bil.puntata1x - bil.puntatax - bil.puntata2
+      end
+    end   
+    @bilancio = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 10)
   end
 
   def index
     #@eurekas = Eureka.all
     @eurekas = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 1)
 
-    if !@eurekas.nil?
+    if !@eurekas[0].nil?
       @spesa_corrente = (@eurekas[0].puntata11).to_f + (@eurekas[0].puntata1x).to_f + (@eurekas[0].puntatax).to_f + (@eurekas[0].puntata2).to_f
     end
   end
@@ -26,6 +37,7 @@ class EurekasController < ApplicationController
   end
 
   def edit
+    @eureka = Eureka.find_by(id: params[:id])
   end
 
   def create
