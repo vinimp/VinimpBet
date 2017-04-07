@@ -136,7 +136,6 @@ class ClassificasController < ApplicationController
 
       end
 
-=======
       @puntata.each do |p|
         @evento = Bet.find(p.bet_id)
         if p.chiusura && !@evento.nil?
@@ -198,7 +197,6 @@ class ClassificasController < ApplicationController
           end
         end
       end     
->>>>>>> 1e354af79d598ec5d5619a028ff0a54644e1967f
         Classifica.create(user_id: @utente_id, n_giornata: @evento.n_giornata, punteggio: @quota_scommessa)        
     end
   end
