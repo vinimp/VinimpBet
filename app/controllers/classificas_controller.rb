@@ -67,7 +67,6 @@ class ClassificasController < ApplicationController
       @puntata = BetPuntate.where(:user_id => g.id, n_giornata: @n_giornata)
       @utente_id = g.id
       @quota_scommessa = 1
-<<<<<<< HEAD
 
       
       if !puntata.nil?
