@@ -34,6 +34,6 @@ Rails.application.configure do
     :authentication => :plain, 
     :domain => 'gmail.com', 
     :user_name => 'vimimp2@gmail.com', 
-    :password => ENV['SECRET'] 
+    :password => ENV['V1nc3nz01972'] 
   }
 end
