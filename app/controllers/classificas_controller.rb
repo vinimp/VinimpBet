@@ -69,7 +69,7 @@ class ClassificasController < ApplicationController
       @quota_scommessa = 1
 
       
-      if !puntata.nil?
+      if !@puntata.nil?
 
         @puntata.each do |p|
           @evento = Bet.find(p.bet_id)
