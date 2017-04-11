@@ -60,7 +60,7 @@ class BetPuntatesController < ApplicationController
       @bet_puntate.evento_scommesso = params[:evento_scommesso]
       @ngiornata = Bet.order('n_giornata DESC') 
 
-      if !@controllo_scommessa_piazzata[0].nil?
+      if !@controllo_scommessa_piazzata[0].chiusura?
         if @ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata
           if (!@ngiornata[0].chiudi_concorso) && (!@controllo_scommessa_piazzata[0].nil?)
             @bet_puntate.n_giornata = @ngiornata[0].n_giornata
