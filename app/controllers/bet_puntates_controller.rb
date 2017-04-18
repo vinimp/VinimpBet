@@ -92,7 +92,7 @@ class BetPuntatesController < ApplicationController
             end 
           else
             respond_to do |format|
-              format.html { redirect_to bets_path, notice: 'Evento non più disponibile' }
+              format.html { redirect_to bets_path, notice: 'Evento non più disponibile!!' }
             end
           end
         end 
