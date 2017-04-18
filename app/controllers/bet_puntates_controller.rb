@@ -62,9 +62,9 @@ class BetPuntatesController < ApplicationController
 
       if (@ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata)
         if (!@controllo_scommessa_piazzata[0].chiusura?)
-          @csp = false
-        else
           @csp = true
+        else
+          @csp = false
         end
       end
 
