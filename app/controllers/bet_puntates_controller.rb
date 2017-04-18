@@ -117,7 +117,7 @@ class BetPuntatesController < ApplicationController
         else
           respond_to do |format|
             #format.html { redirect_to bets_path, notice: 'Evento non più disponibile!' }
-            format.html { redirect_to bets_path, notice: @controllo_scommessa_piazzata[0].nil? }
+            format.html { redirect_to bets_path, notice: @controllo_scommessa_piazzata[0] }
           end
         end  
       end
