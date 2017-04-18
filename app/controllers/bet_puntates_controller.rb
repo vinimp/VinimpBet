@@ -66,6 +66,8 @@ class BetPuntatesController < ApplicationController
         else
           @csp = false
         end
+      else
+        @csp = true
       end
 
       if @csp ####################################(!@controllo_scommessa_piazzata[0].chiusura?)
