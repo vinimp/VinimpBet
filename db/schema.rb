@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 201703062413017) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "autorizzo",              default: false
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
