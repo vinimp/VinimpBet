@@ -22,7 +22,11 @@ class EurekasController < ApplicationController
 
   def index
     #@eurekas = Eureka.all
-    @eurekas = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 1)
+    if current_user.admin?
+      @eurekas = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 1)
+    else
+       @eurekas = Eureka.last.paginate(:page => params[:page], :per_page => 1)
+    end
 
     if !@eurekas[0].nil?
       @spesa_corrente = (@eurekas[0].puntata11).to_f + (@eurekas[0].puntata1x).to_f + (@eurekas[0].puntatax).to_f + (@eurekas[0].puntata2).to_f
