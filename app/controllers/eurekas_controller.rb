@@ -25,7 +25,7 @@ class EurekasController < ApplicationController
     if current_user.admin?
       @eurekas = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 1)
     else
-       @eurekas = Eureka.all.order('id DESC').limit(2).paginate(:page => params[:page], :per_page => 1)
+       @eurekas = Eureka.all.order('id DESC', :limit => 2).paginate(:page => params[:page], :per_page => 1)
     end
 
     if !@eurekas[0].nil?
