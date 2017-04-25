@@ -134,7 +134,7 @@ class ClassificasController < ApplicationController
         end
 
 
-      ######end
+      end
 
       @puntata.each do |p|
         @evento = Bet.find(p.bet_id)
@@ -196,9 +196,6 @@ class ClassificasController < ApplicationController
             @azzeccato = true
           end
         end
-
-
-      end ##########################
 
 
       end     
