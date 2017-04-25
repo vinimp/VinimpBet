@@ -134,7 +134,7 @@ class ClassificasController < ApplicationController
         end
 
 
-      end
+      ######end
 
       @puntata.each do |p|
         @evento = Bet.find(p.bet_id)
@@ -196,6 +196,11 @@ class ClassificasController < ApplicationController
             @azzeccato = true
           end
         end
+
+
+      end ##########################
+
+
       end     
         Classifica.create(user_id: @utente_id, n_giornata: @evento.n_giornata, punteggio: @quota_scommessa)        
     end
