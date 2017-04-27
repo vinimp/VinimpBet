@@ -157,9 +157,6 @@ class ClassificasController < ApplicationController
           end
         end
       end
-
-debugger 
-
         Classifica.create(user_id: @utente_id, n_giornata: @n_giornata, punteggio: @quota_scommessa)        
     end
   end
