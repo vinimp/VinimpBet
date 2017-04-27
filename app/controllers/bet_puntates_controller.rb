@@ -12,9 +12,6 @@ class BetPuntatesController < ApplicationController
       @schedine = BetPuntate.where(user_id: User.distinct).order('user_id ASC')
     end
     #@schedine = User.where(id: BetPuntate.where(n_giornata: @settimana[0].n_giornata))
-
-
-
   end
 
   def index
@@ -39,6 +36,7 @@ class BetPuntatesController < ApplicationController
   end
 
 
+
   def show
   end
 
@@ -59,21 +57,55 @@ class BetPuntatesController < ApplicationController
       @bet_puntate.bet_id = params[:bet]
       @bet_puntate.evento_scommesso = params[:evento_scommesso]
       @ngiornata = Bet.order('n_giornata DESC') 
-
-      if (@ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata)
-        if (!@controllo_scommessa_piazzata[0].chiusura?)
-          @csp = true
-        else
+      if !@controllo_scommessa_piazzata[0].nil?
+        if (@ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata)
+          if (!@controllo_scommessa_piazzata[0].chiusura?)
+            @csp = true
+          else
+            @csp = false
+          end
+        end  
+      else        
           @csp = false
-        end
-      else
-        @csp = true
-      end
-
-      if @csp ####################################(!@controllo_scommessa_piazzata[0].chiusura?)
-        if @ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata
-          if (!@ngiornata[0].chiudi_concorso) && (!@controllo_scommessa_piazzata[0].nil?)
-            @bet_puntate.n_giornata = @ngiornata[0].n_giornata
+      end 
+      if !@controllo_scommessa_piazzata[0].nil?
+        if (!@controllo_scommessa_piazzata[0].chiusura?)
+          if @ngiornata[0].n_giornata == @controllo_scommessa_piazzata[0].n_giornata
+            if (!@ngiornata[0].chiudi_concorso) && (!@controllo_scommessa_piazzata[0].nil?)
+              @bet_puntate.n_giornata = @ngiornata[0].n_giornata
+              respond_to do |format|
+                if @bet_puntate.save
+                  $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
+                  format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
+                else
+                  format.html { render :new }
+                end
+              end
+            else
+              respond_to do |format|
+                format.html { redirect_to bets_path, notice: 'Già hai piazzato la tua scommessa' }
+              end
+            end
+          else
+            if (!@evento_scelto.chiudi_concorso) && (!@controllo_scommessa_piazzata[0].nil?)
+              @bet_puntate.n_giornata = @ngiornata[0].n_giornata
+              respond_to do |format|
+                if @bet_puntate.save
+                  $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
+                  format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
+                else
+                  format.html { render :new }
+                end 
+              end 
+            else
+              respond_to do |format|
+                format.html { redirect_to bets_path, notice: 'Evento non più disponibile!!' }
+              end
+            end
+          end 
+        else
+          @bet_puntate.n_giornata = @ngiornata[0].n_giornata
+          if (!@evento_scelto.chiudi_concorso) && (@controllo_scommessa_piazzata[0].nil?)
             respond_to do |format|
               if @bet_puntate.save
                 $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
@@ -82,52 +114,29 @@ class BetPuntatesController < ApplicationController
                 format.html { render :new }
               end
             end
-
           else
             respond_to do |format|
-              format.html { redirect_to bets_path, notice: 'Già hai piazzato la tua scommessa' }
+              format.html { redirect_to bets_path, notice: 'Evento non più disponibile!' }
+              #format.html { redirect_to bets_path, notice: @controllo_scommessa_piazzata[0] }
             end
-          end
-        else
-
-          if (!@evento_scelto.chiudi_concorso) && (!@controllo_scommessa_piazzata[0].nil?)
-            @bet_puntate.n_giornata = @ngiornata[0].n_giornata
-            respond_to do |format|
-              if @bet_puntate.save
-                $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
-                format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
-              else
-                format.html { render :new }
-              end 
-            end 
-          else
-            respond_to do |format|
-              format.html { redirect_to bets_path, notice: 'Evento non più disponibile!!' }
-            end
-          end
-        end 
+          end  
+        end
       else
         @bet_puntate.n_giornata = @ngiornata[0].n_giornata
-        if (!@evento_scelto.chiudi_concorso) && (@controllo_scommessa_piazzata[0].nil?)
-          respond_to do |format|
-            if @bet_puntate.save
-              $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
-              format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
-            else
-              format.html { render :new }
-            end
+        respond_to do |format|
+          if @bet_puntate.save
+            $bet_puntate = BetPuntate.find_by bet_id: @bet_puntate.bet_id
+            format.html { redirect_to bets_path, notice: 'L ''evento è stato aggiunto alla tua schedina.' }
+          else
+            format.html { render :new }
           end
-        else
-          respond_to do |format|
-            format.html { redirect_to bets_path, notice: 'Evento non più disponibile!' }
-            #format.html { redirect_to bets_path, notice: @controllo_scommessa_piazzata[0] }
-          end
-        end  
+        end
       end
     
-
     else
-       redirect_to bets_path, notice: 'L ''evento non è disponibile.' 
+      respond_to do |format|
+        format.html { redirect_to bets_path, notice: 'Già hai piazzato la tua scommessa' }
+      end      
     end
   end
 
@@ -162,8 +171,6 @@ class BetPuntatesController < ApplicationController
       end
       @ngiornata = Bet.order('n_giornata DESC')   
     end
-
-
 
     def bet_puntate_params
       params.require(:bet_puntate).permit(:user, :bet, :evento_scommesso, :user_id, :chiusura, :id, :n_gionata)

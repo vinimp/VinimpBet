@@ -66,18 +66,15 @@ class ClassificasController < ApplicationController
       @n_giornata = BetPuntate.maximum("n_giornata")
       @puntata = BetPuntate.where(:user_id => g.id, n_giornata: @n_giornata)
       @utente_id = g.id
-      @quota_scommessa = 1
-
-      
+      @quota_scommessa = 1      
       if !@puntata.nil?
-
         @puntata.each do |p|
           @evento = Bet.find(p.bet_id)
           if p.chiusura && !@evento.nil?
             if (@classifica = Classifica.where(user_id: g.id).last)
               if (p.evento_scommesso == @evento.risultato) and (@continua_ciclo)
                 @azzeccato = true
-                if p.evento_scommesso == "v"  
+                if p.evento_scommesso == "v" 
                   if !@azzeccato.nil? 
                     if !@classifica.punteggio.nil?
                       @quota_scommessa = (@quota_scommessa * @evento.vittoria) + @classifica.punteggio
@@ -119,6 +116,33 @@ class ClassificasController < ApplicationController
                 end
                 @azzeccato = false
               end 
+            else
+              if (p.evento_scommesso == @evento.risultato) and (@continua_ciclo)
+                @azzeccato = true
+                if p.evento_scommesso == "v" 
+                  if !@azzeccato.nil? 
+                    @quota_scommessa = (@quota_scommessa * @evento.vittoria)             
+                  end    
+                end
+                if p.evento_scommesso == "p" 
+                  if !@azzeccato.nil? 
+                    @quota_scommessa = (@quota_scommessa * @evento.pareggio)             
+                  end    
+                end    
+                if p.evento_scommesso == "s" 
+                  if !@azzeccato.nil? 
+                    @quota_scommessa = (@quota_scommessa * @evento.sconfitta)             
+                  end    
+                end            
+              else
+                @continua_ciclo = false
+                if !@classifica.punteggio.nil?
+                  @quota_scommessa = @classifica.punteggio
+                else  
+                  @quota_scommessa = 0
+                end
+                @azzeccato = false
+              end               
             end   
           else
             @quota_scommessa = 0  
