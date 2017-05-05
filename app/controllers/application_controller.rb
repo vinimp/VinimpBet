@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :inizializza
   after_filter :store_location
 
-before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
 
   protected
@@ -37,6 +37,7 @@ end
   def inizializza
     if current_user != nil
       @bet_puntate = ApplicationController::BetPuntate.find_by user_id: current_user
+      @vincite = ApplicationController::Eureka.all.order('data DESC').limit(5)
     end
   end    
 end
