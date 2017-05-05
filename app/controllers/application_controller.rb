@@ -37,7 +37,7 @@ end
   def inizializza
     if current_user != nil
       @bet_puntate = ApplicationController::BetPuntate.find_by user_id: current_user
-      @vincite = ApplicationController::Eureka.all.order('data DESC').limit(5)
+      @vincite = ApplicationController::Eureka.all.order('data DESC').limit(10)
     end
   end    
 end
