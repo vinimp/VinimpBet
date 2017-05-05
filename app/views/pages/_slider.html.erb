@@ -7,6 +7,7 @@
         <br>
         <!--%= link_to "Vai alle quote", bets_path, class: "btn-large waves-effect waves-light teal lighten-1" %-->
         <h5>
+          <p class="red-text"><b>Bacheca EUREKA</b></p>
         <marquee
           loop="-1"
           scrollamount="1"
@@ -14,7 +15,7 @@
           direction="up"
           height="150"
           width="80%"
-          align="justify" class="green-text">
+          align="right" class="green-text">
 
           <% @vincite.each do |v| %>
             <%= v.created_at.strftime("%d/%m/%Y") %> Spesa 
@@ -26,9 +27,6 @@
         </marquee>
         </h5>
         <br>
-        <h6>
-          <%= link_to "Vai alle quote", bets_path, class: "btn-large waves-effect waves-light teal lighten-1" %>
-        </h6>
       </h5>
       </div>
     </div>
