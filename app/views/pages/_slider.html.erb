@@ -15,14 +15,15 @@
           direction="up"
           height="150"
           width="80%"
-          align="right" class="green-text">
+          align="center" class="green-text">
 
+          <center>
           <% @vincite.each do |v| %>
-            <%= v.created_at.strftime("%d/%m/%Y") %> Spesa 
-            <%= v.puntata11 + v.puntata1x + v.puntatax + v.puntata2 %> 
-            Vincita <%= v.vincita %>
+            <font color="blue"><%= v.created_at.strftime("%d/%m/%Y") %></font>
+            <font color="red">Vincita</font> <%= v.vincita %> 
             <br>
           <% end %>
+          </center>
 
         </marquee>
         </h5>
