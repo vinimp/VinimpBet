@@ -3,17 +3,22 @@
     <div class="row center">
       <div class="col s10 offset-s1 m6 offset-m3 l6 offset-l3">
       	<br>
-        <h3><b>Gara tra scommettitori di calcio</b></h3>
+        <h5><b><u>Scommesse di calcio</u></b></h5>
         <br>
         <!--%= link_to "Vai alle quote", bets_path, class: "btn-large waves-effect waves-light teal lighten-1" %-->
-        <h5>
-          <p class="red-text"><b>Bacheca EUREKA</b></p>
+
+      </div>
+    </div>
+    <div class="row center">    
+      <div class="col s10 offset-s1 m3 l3">
+        <h6>
+          <p class="red-text"><b>Bacheca EUREKA</b></p>        
         <marquee
           loop="-1"
           scrollamount="1"
           scrolldelay="0"
           direction="up"
-          height="150"
+          height="100"
           width="80%"
           align="center" class="green-text">
 
@@ -24,14 +29,17 @@
             <br>
           <% end %>
           </center>
-
         </marquee>
-        </h5>
+        </h6>
         <br>
-      </h5>
       </div>
+      <div class="col s10 offset-s1 m3 l3">
+        <%= link_to "Vai alle quote", bets_path, class: "btn-large waves-effect waves-light teal lighten-1" %>
+      </div>
+      <div class="col s10 offset-s1 m3 l3">
+        <%= link_to "Eureka", eurekas_path, class: "btn-large waves-effect waves-light teal lighten-1" %>
+      </div>      
     </div>
-    <br><br>
     <div class="parallax"><%= image_tag("background.jpeg") %></div>
   </div>
 
