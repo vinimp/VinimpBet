@@ -21,6 +21,10 @@
             <div class="card-content">
               <% @contatore = 0 %>
               <% @bilancio.each do |bilancio| %>
+
+    <%= bilancio.text_field :created_at %>  #This shows correctly
+    <%= bilancio.collection_select :created_at, bilancio, :created_at %>
+
                 <% @contatore = @contatore +1 %>
                 <% if @contatore % 2 == 0 %>
                   <% @colore = "testo-verde" %>
