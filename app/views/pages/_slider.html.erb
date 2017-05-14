@@ -11,33 +11,33 @@
     </div>
     <center>
     <div class="row center">    
-      <div class="col s10 offset-s1 m4 offset-m4  l4>
-        <h6>      
-        <!--marquee
-          loop="-1"
-          scrollamount="1"
-          scrolldelay="0"
-          direction="up"
-          height="100"
-          width="80%"
-          align="center" class="green-text"-->
+      <div class="col s10 offset-s1 m4 offset-m4 l4">
         <div class="row">
           <div class="col s12 m12 l12">
-            <div class="card white">
-              <div class="card-content white darken-4-text">
-                <span class="card-title">Bacheca EUREKA</span>
-                <p>   
-                  <% @vincite.each do |v| %>
-                    <font color="blue"><%= v.created_at.strftime("%d/%m/%Y") %></font>
-                    <font color="red">Vincita</font> <%= v.vincita %> 
-                    <br>
-                  <% end %>
-                </p>
-              </div>
-            </div>
+            <span class="card-title">
+              <font color="white"><b>Bacheca EUREKA</b></font>
+            </span>
           </div>
-        </div>
-      </div>
+
+
+          <% @vincite.each do |v| %>
+          <div class="row center">  
+
+                <div class="col s14 m4 l4">
+                  <font color="blue"><%= v.created_at.strftime("%d/%m/%Y") %></font>
+                </div>
+                <div class="col s14 m4 l4">
+                  <font color="red">Vincita</font>
+                </div>
+                <div class="col s14 m4 l4">
+                  <%= v.vincita %> 
+                </div>
+              
+            
+          </div>
+          <% end %>
+
+
     
     </div>
   </center>

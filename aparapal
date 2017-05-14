@@ -253,3 +253,45 @@ bilancio.html.erb
       end      
     end
   end
+
+#######################################################################################
+##################_slider.html.erb ####################################################
+#######################################################################################
+
+    <div id="index-banner" class="parallax-container">
+    <br><br>
+    <div class="row center">
+      <div class="col s10 offset-s1 m6 offset-m3 l6 offset-l3">
+        <br>
+        <h5><b><u>Scommesse di calcio</u></b></h5>
+        <br>
+        <!--%= link_to "Vai alle quote", bets_path, class: "btn-large waves-effect waves-light teal lighten-1" %-->
+
+      </div>
+    </div>
+    <center>
+    <div class="row center">    
+      <div class="col s10 offset-s1 m4 offset-m4 l4">
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div class="card white">
+              <div class="card-content white darken-4-text">
+                <span class="card-title">Bacheca EUREKA</span>
+                <p>   
+                  <% @vincite.each do |v| %>
+                    <font color="blue"><%= v.created_at.strftime("%d/%m/%Y") %></font>
+                    <font color="red">Vincita</font> <%= v.vincita %> 
+                    <br>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </center>
+    <div class="parallax"><%= image_tag("background.jpeg") %></div>
+  </div>
+
