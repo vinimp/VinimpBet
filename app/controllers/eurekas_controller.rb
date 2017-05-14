@@ -4,7 +4,7 @@ class EurekasController < ApplicationController
 
   def bilancio_edit
     #@bilancio = Eureka.first
-    @bilancio = Eureka.find_by(id: params[:format]).limit(10)
+    @bilancio = Eureka.find_by(id: params[:format])
   end
 
   def bilancio
@@ -17,7 +17,7 @@ class EurekasController < ApplicationController
         @vincita_spesa = @vincita_spesa - bil.puntata11 - bil.puntata1x - bil.puntatax - bil.puntata2
       end
     end   
-    @bilancio = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 10)
+    @bilancio = Eureka.all.order('id DESC').limit(50).paginate(:page => params[:page], :per_page => 10)
   end
 
   def index
