@@ -4,7 +4,7 @@ class EurekasController < ApplicationController
 
   def bilancio_edit
     #@bilancio = Eureka.first
-    @bilancio = Eureka.find_by(id: params[:format]).limit(50)
+    @bilancio = Eureka.find_by(id: params[:format]).limit(10)
   end
 
   def bilancio
