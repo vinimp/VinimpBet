@@ -19,8 +19,15 @@
                 <span class="card-title">Bacheca EUREKA</span>
                 <p>   
                   <% @vincite.each do |v| %>
+                    <div class="col s4 m4 l4">
                     <font color="blue"><%= v.created_at.strftime("%d/%m/%Y") %></font>
-                    <font color="red">Vincita</font> <%= v.vincita %> 
+                    </div>
+                    <div class="col s4 m4 l4">
+                    <font color="red">Vincita</font> 
+                    </div>
+                    <div class="col s4 m4 l4">
+                    <%= v.vincita %> 
+                    </div>
                     <br>
                   <% end %>
                 </p>
