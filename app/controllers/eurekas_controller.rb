@@ -17,8 +17,12 @@ class EurekasController < ApplicationController
         @vincita_spesa = @vincita_spesa - bil.puntata11 - bil.puntata1x - bil.puntatax - bil.puntata2
       end
     end   
-    if current_user.admin?
-      @bilancio = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 10)
+    if !current_user.nil?
+      if current_user.admin?
+        @bilancio = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 10)
+      else
+         @bilancio = Eureka.all.order('id DESC').limit(20).paginate(:page => params[:page], :per_page => 10)
+      end
     else
        @bilancio = Eureka.all.order('id DESC').limit(20).paginate(:page => params[:page], :per_page => 10)
     end
@@ -26,12 +30,15 @@ class EurekasController < ApplicationController
 
   def index
     #@eurekas = Eureka.all
+
     if !current_user.nil?
       if current_user.admin?
         @eurekas = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 1)
       else
         @eurekas = Eureka.all.order('id DESC').limit(2).paginate(:page => params[:page], :per_page => 1)
       end
+    else
+      @eurekas = Eureka.all.order('id DESC').limit(2).paginate(:page => params[:page], :per_page => 1)
     end
 
     if !@eurekas[0].nil?
