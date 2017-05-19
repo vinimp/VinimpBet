@@ -20,7 +20,7 @@ class EurekasController < ApplicationController
     if current_user.admin?
       @bilancio = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 10)
     else
-       @bilancio = Eureka.all.order('id DESC').limit(50).paginate(:page => params[:page], :per_page => 10)
+       @bilancio = Eureka.all.order('id DESC').limit(20).paginate(:page => params[:page], :per_page => 10)
     end
   end
 
