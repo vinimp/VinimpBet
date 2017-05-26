@@ -8,7 +8,7 @@ class EurekasController < ApplicationController
   end
 
   def bilancio
-    @bilancio = Eureka.all.order('id DESC').limit(10)   
+    @bilancio = Eureka.all.order('id DESC') #.limit(10)   
     @vincita_spesa = 0
     @bilancio.each do |bil|
       if !bil.vincita.nil?
@@ -21,10 +21,10 @@ class EurekasController < ApplicationController
       if current_user.admin?
         @bilancio = Eureka.all.order('id DESC').paginate(:page => params[:page], :per_page => 10)
       else
-         @bilancio = Eureka.all.order('id DESC').limit(20).paginate(:page => params[:page], :per_page => 10)
+         @bilancio = Eureka.all.order('id DESC').limit(1).paginate(:page => params[:page], :per_page => 10)
       end
     else
-       @bilancio = Eureka.all.order('id DESC').limit(20).paginate(:page => params[:page], :per_page => 10)
+       @bilancio = Eureka.limit(1).order('id DESC').paginate(:page => params[:page], :per_page => 10)
     end
   end
 
