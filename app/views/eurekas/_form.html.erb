@@ -1,0 +1,67 @@
+<%= form_for(@eureka) do |f| %>
+  <% if @eureka.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@eureka.errors.count, "error") %> prohibited this eureka from being saved:</h2>
+
+      <ul>
+      <% @eureka.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :'data evento' %><br>
+    <%= f.text_field :data %>
+  </div>
+  <div class="field">
+    <%= f.label :evento1 %><br>
+    <%= f.text_field :evento1 %>
+  </div>
+  <div class="field">
+    <%= f.label :evento2 %><br>
+    <%= f.text_field :evento2 %>
+  </div>
+  <div class="field">
+    <%= f.label :unouno %><br>
+    <%= f.text_field :unouno %>
+  </div>
+  <div class="field">
+    <%= f.label :unox %><br>
+    <%= f.text_field :unox %>
+  </div>
+  <div class="field">
+    <%= f.label :x %><br>
+    <%= f.text_field :x %>
+  </div>
+  <div class="field">
+    <%= f.label :due %><br>
+    <%= f.text_field :due %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :puntata11 %><br>
+    <%= f.text_field :puntata11 %>
+  </div>
+  <div class="field">
+    <%= f.label :puntata1x %><br>
+    <%= f.text_field :puntata1x %>
+  </div>
+  <div class="field">
+    <%= f.label :puntatax %><br>
+    <%= f.text_field :puntatax %>
+  </div>
+  <div class="field">
+    <%= f.label :puntata2 %><br>
+    <%= f.text_field :puntata2 %>
+  </div>
+
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,151 @@
+<p id="notice"><%= notice %></p>
+
+<% if @eurekas != nil %>
+
+<div class="row">
+  <div class="col s12 m12 l12">
+    <h4 class="header center">Scommessa proposta per oggi</h4>
+    <div class="card horizontal">
+      <div class="card-image blue-grey darken-1">
+        <%= image_tag "logo.gif", class: "logo-v-center" %>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content blue-grey darken-1 card-content white-text">
+
+
+
+            <% if !@eurekas[0].nil? %>
+              <div>
+                <b><%= @eurekas[0].evento1 %><br>
+                <%= @eurekas[0].evento2 %></b>
+              </div>
+                <p class="cyan-text lighten-5-text">Data evento: <%= @eurekas[0].data.strftime("%d/%m/%Y") %></p>
+                <% end %>
+<% end %>
+
+
+          <div class="row">
+            <div class="col s3 col-offset-s3 m3 l3">
+              
+            </div>  
+            <div class="col s2 m2 l2">
+              <b>1-1</b><br>
+            </div>
+            <div class="col s2 m2 l2">
+              <b>1-x</b><br>    
+            </div>
+            <div class="col s2 m2 l2">
+              <b>x</b><br>    
+            </div>
+            <div class="col s2 m2 l2">
+              <b>2</b><br>    
+            </div>
+          </div>
+
+<hr color="red darken-4">
+ <% if !@eurekas[0].nil? %>
+          <div class="row">
+            <div class="col s3 col-offset-s3 m3 l3 testo-quote"> 
+              <b>Quote</b> 
+            </div>  
+            <div class="col s2 m2 l2 testo-quote">
+              <%= @eurekas[0].unouno %>
+            </div>
+            <div class="col s2 m2 l2 testo-quote">   
+              <%= @eurekas[0].unox %>
+            </div>
+            <div class="col s2 m2 l2 testo-quote">  
+              <%= @eurekas[0].x %>
+            </div>
+            <div class="col s2 m2 l2 testo-quote"> 
+              <%= @eurekas[0].due %>
+            </div>
+          </div>
+
+<hr color="red darken-4">          
+
+          <div class="row">
+            <div class="col s3 col-offset-s3 m3 l3 testo-verde"> 
+              <b>Puntate</b> 
+            </div>  
+            <div class="col s2 m2 l2 testo-verde">
+              <%= number_to_currency(@eurekas[0].puntata11) %>
+            </div>
+            <div class="col s2 m2 l2 testo-verde">   
+              <%= number_to_currency(@eurekas[0].puntata1x) %>
+            </div>
+            <div class="col s2 m2 l2 testo-verde">  
+              <%= number_to_currency(@eurekas[0].puntatax) %>
+            </div>
+            <div class="col s2 m2 l2 testo-verde"> 
+              <%= number_to_currency(@eurekas[0].puntata2) %>
+            </div>
+          </div>
+
+<hr color="red darken-4">          
+
+          <div class="row">
+            <div class="col s3 col-offset-s3 m3 l3 testo-rosso"> 
+              <b>Potenziali Vincite</b> 
+            </div>  
+            <div class="col s2 m2 l2 testo-rosso">
+              <b><%= number_to_currency(@eurekas[0].puntata11 * @eurekas[0].unouno) %></b>
+            </div>
+            <div class="col s2 m2 l2 testo-rosso">   
+              <b><%= number_to_currency(@eurekas[0].puntata1x * @eurekas[0].unox) %></b>
+            </div>
+            <div class="col s2 m2 l2 testo-rosso">  
+              <b><%= number_to_currency(@eurekas[0].puntatax * @eurekas[0].x) %></b>
+            </div>
+            <div class="col s2 m2 l2 testo-rosso"> 
+              <b><%= number_to_currency(@eurekas[0].puntata2 * @eurekas[0].due) %></b>
+            </div>
+          </div>
+
+        </div>   
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s6 m3 l2 offset-l5">
+    <b>Spesa corrente</b>
+    <h5 class="chip red accent-1"><b><%= number_to_currency(@spesa_corrente) %></b></h5>
+  </div>
+
+
+<% end %>
+
+
+<div class="row">
+  <div class="col s12 m12 l12" style='text-align:justify'>
+    <hr>
+    <h4 class="header center">Ratio della scommessa</h4>
+    <p><b>Con la scommessa proposta si punta a vincere 10 euri nel caso della sortita degli eventi 1-1 e 1-x, a recuperare l'intera spesa nel caso della sortita del pareggio del primo evento, e di attutire la perdita nel caso della sortita della vittoria della squadra ospite del primo evento</b></p>
+  </div>
+</div>
+
+
+<% if user_signed_in? %>
+  <% if current_user.email == "vinimp@libero.it" then %>
+    <% @eurekas.each do |eureka| %>
+        <%= link_to 'Show', eureka %>
+        <%= link_to 'Edit', edit_eureka_path(eureka) %>
+        <%= link_to 'Destroy', eureka, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  <% end %>
+<% end %>    
+<br>
+
+<%= link_to "Bilancio", bilancio_path, class: "btn btn-large" %>
+<% if user_signed_in? %>
+  <% if current_user.email == "vinimp@libero.it" then %>
+    <%= link_to 'New Eureka', new_eureka_path %>
+  <% end %>
+<% end %>
+
+<% if current_user.admin? %>
+  <div class="pagination center">
+      <%= will_paginate @bets  %>
+  </div>
+<% end %>

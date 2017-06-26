@@ -1,0 +1,79 @@
+
+	<nav class="teal lighten-3">
+		<div class="container nav-wrapper">
+			<%= image_tag "logo.ico", class: "tiny material-icons class-logo" %>
+		  <%= link_to "Vinimp-Bet", root_path, class: "brand-logo testo-logo" %>
+		  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+
+		  
+		  <ul class="right hide-on-med-and-down">		
+			<% if user_signed_in? %>
+				<% if @bet_puntate != nil %>	  
+					<% if controller.controller_name != "bet_puntates" %>
+			      <li><%= link_to "Schedina", bet_puntates_path(:user_id => @bet_puntate.user_id), class:"waves-effect waves-light btn" %></li>
+			  	<% end %>
+				<% end %>	
+					
+			  <li><%= image_tag current_user.avatar.url(:thumb), class: "tiny material-icons class-logo" %></li>
+		  	<li class="colore"><b><%= current_user.name %></b></li>
+				<li><a class="dropdown-button teal lighten-3" href="#!" data-activates="dropdown1">Menù<i class="material-icons right">arrow_drop_down</i></a></li>		 
+				<ul id="dropdown1" class="dropdown-content">
+					<li><%= link_to "Home", root_path %></li>
+				  <li><%= link_to "Quote", bets_path %></li>
+				  <li><%= link_to "Classifica", classificas_path %></li>
+				  <li><%= link_to "Pronostici", schedine_path %></li>	
+				  <li class="divider"></li>			
+				  <li><%= link_to "Eureka", eurekas_path %></li>		
+				  <li><%= link_to "Bilancio", bilancio_path %></li>				  
+				  <li class="divider"></li>
+				  <li><%= link_to "Account", edit_user_registration_path %></li>
+				  <li class="divider"></li>
+				  <li><%= link_to "Esci", destroy_user_session_path, method: :delete %></li>
+				</ul>					  		
+			<% else %>
+				<li><a class="dropdown-button teal lighten-3" href="#!" data-activates="dropdown1">Menù<i class="material-icons right">arrow_drop_down</i></a></li>		  		
+				<ul id="dropdown1" class="dropdown-content">
+					<li><%= link_to "Home", root_path %></li>
+				  <li><%= link_to "Quote", bets_path %></li>
+				  <li><%= link_to "Classifica", classificas_path %></li>
+				  <li><%= link_to "Pronostici", schedine_path %></li>	
+				  <li class="divider"></li>			
+				  <li><%= link_to "Eureka", eurekas_path %></li>		
+				  <li><%= link_to "Bilancio", bilancio_path %></li>				  
+				</ul>					  		
+				<li><%= link_to "Log in", new_user_session_path %></li>
+				<li><%= link_to "Registrazione", new_user_registration_path %></li>
+			<% end %>		
+			</ul>
+		  <ul class="side-nav" id="mobile-demo">
+		  	<% if user_signed_in? %>
+			    <% if $bet_puntate %>
+			      <li><%= link_to "Schedina", bet_puntates_path(:bet_data => $bet_puntate.created_at), class:"waves-effect waves-light btn", :target => "_blank" %></li>
+			    <% end %>		 
+					<li><%= link_to "Home", root_path %></li>
+				  <li><%= link_to "Quote", bets_path %></li>
+				  <li><%= link_to "Classifica", classificas_path %></li>
+				  <li><%= link_to "Pronostici", schedine_path %></li>		
+				  <li class="divider"></li>			
+				  <li><%= link_to "Eureka", eurekas_path %></li>		
+				  <li><%= link_to "Bilancio", bilancio_path %></li>				  		  
+				  <li class="divider"></li>
+				  <li><%= link_to "Account", edit_user_registration_path %></li>
+				  <li class="divider"></li>
+		  		<li><%= link_to "Esci", destroy_user_session_path, method: :delete %></li>
+		  	<% else %>
+					<li><%= link_to "Home", root_path %></li>
+				  <li><%= link_to "Quote", bets_path %></li>
+				  <li><%= link_to "Classifica", classificas_path %></li>
+				  <li><%= link_to "Pronostici", schedine_path %></li>	
+				  <li class="divider"></li>			
+				  <li><%= link_to "Eureka", eurekas_path %></li>		
+				  <li><%= link_to "Bilancio", bilancio_path %></li>				  					  					  
+					<li><%= link_to "Registrazione", new_user_registration_path %></li>				  
+					<li><%= link_to "Log in", new_user_session_path %></li>
+				</ul>						
+			<% end %>
+			</ul>
+		</div>
+	</nav>

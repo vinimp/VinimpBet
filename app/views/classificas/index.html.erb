@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<% if !@ngiornata[0].nil? %>
+  <h2>Classifica scommettitori Giornata <%= @ngiornata[0].n_giornata %></h2>
+<% end %>
+<div class="row">
+
+<div class="col s10 offset-s1 m6 offset-m3 ">
+  <div class="col s6 m3">Giocatore</div>
+  <div class="col s6 m3 offset-m3">Punteggio</div> 
+  <br>              
+  <hr>
+  </div>
+         
+<% @contatore = 0 %>
+
+<% @classificas.each do |classifica| %>
+  <% @contatore = @contatore + 1 %>
+  <% if @contatore % 2 == 0 %>
+    <% @colore = "green darken-1" %>
+  <% else %>
+    <% @colore = "blue-grey darken-1" %>
+  <% end %>    
+  <div class="col s10 offset-s1 m6 offset-m3 card <%= @colore %> card-content white-text">
+      <% @user = User.find_by(id: classifica.user_id) %>
+      <div class="col s6 m3"><%= @user.name %></div>
+      <div class="col s6 m3 offset-m3"><%= number_to_percentage(classifica.punteggio, precision: 2) %></div>
+  </div>
+<% end %>
+
+</div>   
+
+    <div class="row">
+      <div class="col s12 m6 offset-m3 card">
+        <% if current_user != nil %>
+          <% if current_user.email == "vinimp@libero.it" then %>
+            <%= link_to 'Aggiorna Classifica', classificas_path, method: :post, data: {confirm: 'Sei sicuro?'} %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+

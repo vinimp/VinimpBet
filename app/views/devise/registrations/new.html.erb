@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col s10 offset-s1 m6 offset-m3">
+
+    <h4 class="center">Registrazione</h4>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+      <%= devise_error_messages! %>
+      
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="field">
+        <%= f.label :avatar %><br />
+        <%= f.file_field :avatar %>
+      </div>
+
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> caratteri almeno)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="waves-effect waves-light btn btn-custom">
+        <%= f.submit "Registrati" %>
+      </div>
+
+  <div class="row">
+      <div class="field col s5 m5 l5">
+        <%= f.check_box :autorizzo %>
+        <%= f.label :autorizzo %>
+      </div>      
+  </div>
+  <div class="row">
+        <div class="col s12 m12 l12 autorizzo_giustifica">
+          Trattamento dei dati personali:
+          i tuoi dati non saranno comunicati a terzi e conservati al solo scopo di fornirti i servizi presente sul sito www.vinimp.top
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<!-- <h1>Listing Bets</h1> -->
+  <div class="center"> 
+    <%  if !@bets[0].nil? %>
+      <h3><%= "Giornata " + @bets[0].n_giornata.to_s %></h3>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @bets.each do |bet| %>
+      <div class="col s12 m6 l4">
+        <div class="card  blue-grey darken-1 altezza-bet">
+          <div class="center waves-effect waves-block waves-light">
+            <%= image_tag bet.logo_in, class:"tiny material-icons class-logo" %>
+            <%= image_tag bet.logo_out, class:"material-icons class-logo" %>     
+          </div>
+          <div class="card-content">
+            <span class="card-title activator white-text"><%= bet.evento %><i class="material-icons right">more_vert</i></span>
+            
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"><%= bet.evento %><i class="material-icons right">close</i></span>
+            <p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>1</th>
+                    <th>x</th>
+                    <th>2</th>     
+                    <th colspan="3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td><%= link_to bet.vittoria, bet_puntates_path(c_u: current_user, :bet => bet.id, :evento_scommesso => "v"), :method => :post %></td>
+                      <td><%= link_to  bet.pareggio, bet_puntates_path(c_u: current_user, :bet => bet.id, :evento_scommesso => "p"), :method => :post %></td>
+                      <td><%= link_to  bet.sconfitta, bet_puntates_path(c_u: current_user, :bet => bet.id, :evento_scommesso => "s"), :method => :post %></td>
+      
+                      <% if user_signed_in? %>
+                        <% if current_user.email == "vinimp@libero.it" then %>
+                          <td><%= link_to 'Show', bet %></td>
+                          <td><%= link_to 'Edit', edit_bet_path(bet) %></td>
+                          <td><%= link_to 'Destroy', bet, method: :delete, data: { confirm: 'Sei sicuro?' } %></td>
+                        <% end %>
+                      <% end %>
+                    </tr>
+
+                </tbody>
+              </table>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<br>
+
+
+<% if user_signed_in? %>
+  <% if current_user.email == "vinimp@libero.it" then %>
+    
+    <td><%= link_to 'Nuovo Concorso', new_bet_path %></td>
+    
+  <% end %>
+<% end %>
+
+<div class="pagination center">
+    <%= will_paginate @bets  %>
+</div>
+
+
+

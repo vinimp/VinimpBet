@@ -1,0 +1,61 @@
+<table class="container">
+  <thead>
+    <tr>
+      <th><h2 class="center">La mia scommessa</h2></th>
+      <th><h5 class="chip red accent-1"><b><%= number_to_percentage(@quota_totale, precision: 2) %></b></h5></th>
+    </tr>
+  </thead>
+</table>
+
+<table class="container">
+  <thead>
+    <tr>
+      <th>Incontro</th>
+      <th class="center">Evento scommesso</th>
+      <th class="center">Quota</th>      
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% if @bet_puntates != nil %>
+      <% @controlla_chiusura.each do |bet| %>
+      <tr>
+        <td><%= bet.bet.evento %></td>
+        <% if bet.evento_scommesso == "v"%>
+          <td class="center">1</td>
+          <td class="center"><%= bet.bet.vittoria %></td>          
+        <% end %>
+        <% if bet.evento_scommesso == "p"%>
+          <td class="center">x</td>
+          <td class="center"><%= bet.bet.pareggio %></td>           
+        <% end %>      
+        <% if bet.evento_scommesso == "s"%>
+          <td class="center">2</td>
+          <td class="center"><%= bet.bet.sconfitta %></td>           
+        <% end %>
+        <% if !@chiusura %>
+          <td class="center"><%= link_to "Elimina", bet, method: :delete, data: { confirm: 'Sei sicuro?' }  %></td> 
+        <% end %>
+      </tr>
+      <% end %>
+    <% end %>
+      <tr>
+        <td colspan="3" class="center">  
+          <% if !@chiusura %>
+            <% if !@bet_puntate.nil? %>
+              <%= form_for @bet_puntate, html: { multipart: true } do |f| %>
+                <%= f.hidden_field :user_id %>
+                <div class="actions">
+                  <%= f.submit "Piazza la scommessa", class: "waves-effect waves-light btn btn-custom" %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+<br>
+

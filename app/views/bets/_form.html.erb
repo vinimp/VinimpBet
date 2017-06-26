@@ -1,0 +1,44 @@
+<%= form_for @bet, html: { multipart: true } do |f| %>
+  <% if @bet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bet.errors.count, "error") %> prohibited this bet from being saved:</h2>
+
+      <ul>
+      <% @bet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :n_giornata %><br>
+    <%= f.text_field :n_giornata %>
+  </div>  
+
+  <div class="field">
+    <%= f.label :evento %><br>
+    <%= f.text_field :evento %>
+    <%= f.file_field :logo_in %>
+    <%= f.file_field :logo_out %>
+  </div>
+  <div class="field">
+    <%= f.label :vittoria %><br>
+    <%= f.text_field :vittoria %>
+  </div>
+  <div class="field">
+    <%= f.label :pareggio %><br>
+    <%= f.text_field :pareggio %>
+  </div>
+  <div class="field">
+    <%= f.label :sconfitta %><br>
+    <%= f.text_field :sconfitta %>
+  </div>
+  <div class="field">
+    <%= f.label :data %><br>
+    <%= f.date_select :data %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
